@@ -269,7 +269,7 @@ variable "instance_role_managed_policy_arn_count" {
 
 variable "additional_ssm_bootstrap_list" {
   description = "A list of maps consisting of main step actions, to be appended to SSM associations. Please see usage.tf.example in this repo for examples."
-  type        = list(string)
+  type        = list(map(string))
   default     = []
 }
 

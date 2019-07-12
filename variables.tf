@@ -4,7 +4,7 @@
 
 variable "additional_tags" {
   description = "Additional tags to be added to the ASG instance(s). Format: list of maps. Please see usage.tf.example in this repo for examples."
-  type        = list(string)
+  type        = list(map(string))
   default     = []
 }
 

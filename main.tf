@@ -355,7 +355,7 @@ data "aws_ami" "asg_ami" {
 }
 
 data "template_file" "user_data" {
-  template = file("${path.module}/text/${local.user_data_map[var.ec2_os]}")
+  template = file("${path.module}/text/${lookup(local.user_data_map, var.ec2_os)}")
 
   vars = {
     initial_commands = var.initial_userdata_commands != "" ? var.initial_userdata_commands : ""
@@ -790,7 +790,7 @@ data "template_file" "ssm_command_docs" {
   count = local.ssm_command_count
 
   vars = {
-    ssm_cmd_json = local.default_ssm_cmd_list[count.index]["ssm_add_step"]
+    ssm_cmd_json = lookup(local.default_ssm_cmd_list[count.index],"ssm_add_step")
   }
 }
 
@@ -799,7 +799,7 @@ data "template_file" "additional_ssm_docs" {
   count = var.additional_ssm_bootstrap_step_count
 
   vars = {
-    additional_ssm_cmd_json = var.additional_ssm_bootstrap_list[count.index]["ssm_add_step"]
+    additional_ssm_cmd_json = lookup(var.additional_ssm_bootstrap_list[count.index], "ssm_add_step")
   }
 }
 

@@ -637,7 +637,15 @@ resource "aws_autoscaling_group" "autoscalegrp" {
   target_group_arns = var.target_group_arns
   wait_for_capacity_timeout = var.asg_wait_for_capacity_timeout
 
-  tags = concat(local.tags, var.additional_tags)
+  dynamic "tag" {
+    for_each = concat(local.tags,var.additional_tags)
+
+    content {
+      key = tag.value.key
+      value = tag.value.value
+      propagate_at_launch = tag.value.propagate_at_launch
+    }
+  }
 
   lifecycle {
     create_before_destroy = true

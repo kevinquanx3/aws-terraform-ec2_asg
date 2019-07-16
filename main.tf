@@ -638,7 +638,7 @@ resource "aws_autoscaling_group" "autoscalegrp" {
   wait_for_capacity_timeout = var.asg_wait_for_capacity_timeout
 
   dynamic "tag" {
-    for_each = concat(local.tags,var.additional_tags)
+    for_each = concat(local.tags, var.additional_tags)
 
     content {
       key = tag.value.key
@@ -798,7 +798,7 @@ data "template_file" "ssm_command_docs" {
   count = local.ssm_command_count
 
   vars = {
-    ssm_cmd_json = lookup(local.default_ssm_cmd_list[count.index],"ssm_add_step")
+    ssm_cmd_json = lookup(local.default_ssm_cmd_list[count.index], "ssm_add_step")
   }
 }
 

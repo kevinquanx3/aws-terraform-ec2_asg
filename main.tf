@@ -687,8 +687,8 @@ module "group_terminating_instances" {
   namespace                = "AWS/AutoScaling"
   notification_topic       = "${var.notification_topic}"
   period                   = 21600
-  rackspace_alarms_enabled = "${var.rackspace_alarms_enabled}"
-  rackspace_managed        = "${var.rackspace_managed}"
+#  rackspace_alarms_enabled = "${var.rackspace_alarms_enabled}"
+#  rackspace_managed        = "${var.rackspace_managed}"
   severity                 = "emergency"
   statistic                = "Sum"
   threshold                = "${var.terminated_instances}"

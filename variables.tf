@@ -372,11 +372,11 @@ variable "notification_topic" {
   type        = "list"
   default     = []
 }
-/*
+
 variable "rackspace_managed" {
   description = "Boolean parameter controlling if instance will be fully managed by Rackspace support teams, created CloudWatch alarms that generate tickets, and utilize Rackspace managed SSM documents."
   type        = "string"
-  default     = true
+  default     = false
 }
 
 variable "rackspace_alarms_enabled" {
@@ -384,7 +384,7 @@ variable "rackspace_alarms_enabled" {
   type        = "string"
   default     = false
 }
-*/
+
 variable "terminated_instances" {
   description = "Specifies the maximum number of instances that can be terminated in a six hour period without generating a Cloudwatch Alarm."
   type        = "string"

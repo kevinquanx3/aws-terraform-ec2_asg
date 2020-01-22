@@ -35,7 +35,9 @@ locals {
 
   # This is a list of ssm main steps
   default_ssm_cmd_list = [
+    /*
     {
+      
       ssm_add_step = <<EOF
       {
         "action": "aws:runDocument",
@@ -47,7 +49,7 @@ locals {
         "timeoutSeconds": 300
       }
 EOF
-    },
+    },*/
     {
       ssm_add_step = <<EOF
       {
@@ -85,6 +87,7 @@ EOF
       }
 EOF
     },
+    /*
     {
       ssm_add_step = <<EOF
       {
@@ -126,7 +129,7 @@ EOF
         "timeoutSeconds": 300
       }
 EOF
-    },
+    },*/
     {
       ssm_add_step = <<EOF
       {
@@ -142,6 +145,7 @@ EOF
     },
   ]
 
+  /*
   ssm_codedeploy_include = {
     enabled = <<EOF
     {
@@ -175,7 +179,7 @@ EOF
 
   codedeploy_install = "${var.install_codedeploy_agent ? "enabled" : "disabled"}"
   scaleft_install    = "${var.install_scaleft_agent ? "enabled" : "disabled"}"
-
+  */
   ssm_command_count = 6
 
   ebs_device_map = {

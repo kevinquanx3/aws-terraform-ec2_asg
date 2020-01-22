@@ -227,7 +227,7 @@ EOF
     },
     {
       key                 = "ServiceProvider"
-      value               = "Rackspace"
+      value               = "Sage"
       propagate_at_launch = true
     },
     {
@@ -630,7 +630,7 @@ resource "aws_autoscaling_group" "autoscalegrp" {
 
   depends_on = ["aws_ssm_association.ssm_bootstrap_assoc"]
 }
-
+/*
 resource "aws_autoscaling_notification" "scaling_notifications" {
   count = "${var.enable_scaling_notification ? var.asg_count : 0}"
 
@@ -662,7 +662,7 @@ resource "aws_autoscaling_notification" "rs_support_emergency" {
 
   topic_arn = "arn:aws:sns:${data.aws_region.current_region.name}:${data.aws_caller_identity.current_account.account_id}:rackspace-support-emergency"
 }
-
+*/
 #
 # Provisioning of CloudWatch related resources
 #
@@ -675,7 +675,7 @@ data "null_data_source" "alarm_dimensions" {
 }
 
 module "group_terminating_instances" {
-  source = "git@github.com:rackspace-infrastructure-automation/aws-terraform-cloudwatch_alarm//?ref=v0.0.1"
+  source = "git@github.com:kevinquanx3/aws-terraform-cloudwatch_alarm//?ref=v0.0.1"
 
   alarm_count              = "${var.asg_count}"
   alarm_description        = "Over ${var.terminated_instances} instances terminated in last 6 hours, generating ticket to investigate."

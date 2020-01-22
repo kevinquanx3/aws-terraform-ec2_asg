@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 module "vpc" {
-  source = "git@github.com:rackspace-infrastructure-automation/aws-terraform-vpc_basenetwork?ref=v0.0.10"
+  source = "git@github.com:kevinquanx3/aws-terraform-vpc_basenetwork?ref=v0.0.10"
 
   vpc_name = "EC2-ASG-BaseNetwork-Test1"
 }

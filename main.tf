@@ -87,7 +87,7 @@ EOF
       }
 EOF
     },
-    /*
+    
     {
       ssm_add_step = <<EOF
       {
@@ -129,7 +129,7 @@ EOF
         "timeoutSeconds": 300
       }
 EOF
-    },*/
+    },
     {
       ssm_add_step = <<EOF
       {

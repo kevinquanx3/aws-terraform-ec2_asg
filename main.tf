@@ -145,7 +145,7 @@ EOF
     },
   ]
 
-  /*
+  
   ssm_codedeploy_include = {
     enabled = <<EOF
     {
@@ -179,7 +179,7 @@ EOF
 
   codedeploy_install = "${var.install_codedeploy_agent ? "enabled" : "disabled"}"
   scaleft_install    = "${var.install_scaleft_agent ? "enabled" : "disabled"}"
-  */
+  
   ssm_command_count = 6
 
   ebs_device_map = {

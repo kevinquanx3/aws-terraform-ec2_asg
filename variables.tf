@@ -64,7 +64,7 @@ variable "install_codedeploy_agent" {
 variable "install_scaleft_agent" {
   description = "Install scaleft agent on instance(s)? true or false"
   type        = "string"
-  default     = true
+  default     = false
 }
 
 variable "instance_type" {

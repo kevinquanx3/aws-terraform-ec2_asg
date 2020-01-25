@@ -35,7 +35,7 @@ locals {
 
   # This is a list of ssm main steps
   default_ssm_cmd_list = [
-    /*
+    
     {
       
       ssm_add_step = <<EOF
@@ -49,7 +49,7 @@ locals {
         "timeoutSeconds": 300
       }
 EOF
-    },*/
+    },
     {
       ssm_add_step = <<EOF
       {

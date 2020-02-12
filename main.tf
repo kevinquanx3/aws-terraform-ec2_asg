@@ -35,7 +35,7 @@ locals {
 
   # This is a list of ssm main steps
   default_ssm_cmd_list = [
-    
+    /*
     {
       
       ssm_add_step = <<EOF
@@ -49,7 +49,7 @@ locals {
         "timeoutSeconds": 300
       }
 EOF
-    },
+    },*/
     {
       ssm_add_step = <<EOF
       {
@@ -87,7 +87,7 @@ EOF
       }
 EOF
     },
-    
+    /*
     {
       ssm_add_step = <<EOF
       {
@@ -129,7 +129,7 @@ EOF
         "timeoutSeconds": 300
       }
 EOF
-    },
+    },*/
     {
       ssm_add_step = <<EOF
       {
@@ -145,7 +145,7 @@ EOF
     },
   ]
 
-  
+  /*
   ssm_codedeploy_include = {
     enabled = <<EOF
     {
@@ -179,7 +179,7 @@ EOF
 
   codedeploy_install = "${var.install_codedeploy_agent ? "enabled" : "disabled"}"
   scaleft_install    = "${var.install_scaleft_agent ? "enabled" : "disabled"}"
-  
+  */
   ssm_command_count = 6
 
   ebs_device_map = {
@@ -652,7 +652,7 @@ resource "aws_autoscaling_notification" "scaling_notifications" {
   topic_arn = "${var.scaling_notification_topic}"
 }
 
-resource "aws_autoscaling_notification" "rs_support_emergency" {
+resource "aws_autoscaling_notification" "support_emergency" {
   count = "${var.rackspace_managed ? var.asg_count : 0}"
 
   group_names = [
@@ -664,7 +664,7 @@ resource "aws_autoscaling_notification" "rs_support_emergency" {
     "autoscaling:EC2_INSTANCE_TERMINATE_ERROR",
   ]
 
-  topic_arn = "arn:aws:sns:${data.aws_region.current_region.name}:${data.aws_caller_identity.current_account.account_id}:rackspace-support-emergency"
+  topic_arn = "arn:aws:sns:${data.aws_region.current_region.name}:${data.aws_caller_identity.current_account.account_id}:support-emergency"
 }
 
 #

@@ -358,13 +358,13 @@ variable "cw_scaling_metric" {
 variable "rackspace_managed" {
   description = "Boolean parameter controlling if instance will be fully managed by Rackspace support teams, created CloudWatch alarms that generate tickets, and utilize Rackspace managed SSM documents."
   type        = "string"
-  default     = true
+  default     = false
 }
 
 variable "enable_custom_alarm_sns_topic" {
   description = "If not Rackspace managed, you can use custom SNS topics to send the Alarm actions to. If you will be providing a custom SNS topic, please set this to true. If not, set to false."
   type        = "string"
-  default     = false
+  default     = true
 }
 
 variable "custom_alarm_sns_topic" {

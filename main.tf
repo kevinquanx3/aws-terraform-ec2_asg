@@ -198,7 +198,7 @@ EOF
     },
     {
       key                 = "ServiceProvider"
-      value               = "Rackspace"
+      value               = "Sage"
       propagate_at_launch = true
     },
     {
@@ -230,7 +230,7 @@ EOF
     windows2016   = "windows_userdata.ps1"
   }
 
-  sns_topic = "arn:aws:sns:${data.aws_region.current_region.name}:${data.aws_caller_identity.current_account.account_id}:rackspace-support-emergency"
+  sns_topic = "arn:aws:sns:${data.aws_region.current_region.name}:${data.aws_caller_identity.current_account.account_id}:support-emergency"
 
   alarm_action_config = "${var.rackspace_managed ? "managed":"unmanaged"}"
 
@@ -546,7 +546,7 @@ resource "aws_autoscaling_notification" "scaling_notifications" {
   topic_arn = "${var.scaling_notification_topic}"
 }
 
-resource "aws_autoscaling_notification" "rs_support_emergency" {
+resource "aws_autoscaling_notification" "support_emergency" {
   count = "${local.alarm_action_config == "managed" || var.enable_custom_alarm_sns_topic ? var.asg_count : 0}"
 
   group_names = [

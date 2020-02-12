@@ -27,7 +27,7 @@ variable "detailed_monitoring" {
 }
 
 variable "ec2_os" {
-  description = "Intended Operating System/Distribution of Instance. Valid inputs are: `amazon`, `amazon2`, `amazoneks`, `amazonecs`, `rhel6`, `rhel7`, `rhel8`, `centos6`, `centos7`, `ubuntu14`, `ubuntu16`, `ubuntu18`, `windows2008`, `windows2012r2`, `windows2016`, `windows2019`"
+  description = "Intended Operating System/Distribution of Instance. Valid inputs are ('amazon', 'rhel6', 'rhel7', 'centos6', 'centos7', 'ubuntu14', 'ubuntu16', 'windows2008', 'windows2012R2', 'windows2016')"
   type        = "string"
 }
 
@@ -57,12 +57,6 @@ variable "image_id" {
 
 variable "install_codedeploy_agent" {
   description = "Install codedeploy agent on instance(s)? true or false"
-  type        = "string"
-  default     = false
-}
-
-variable "install_scaleft_agent" {
-  description = "Install scaleft agent on instance(s)? true or false"
   type        = "string"
   default     = false
 }
@@ -219,12 +213,6 @@ variable "secondary_ebs_volume_type" {
   default     = "gp2"
 }
 
-variable "secondary_ebs_volume_existing_id" {
-  description = "The Snapshot ID of an existing EBS volume you want to use for the secondary volume. i.e. snap-0ad8580e3ac34a9f1"
-  type        = "string"
-  default     = ""
-}
-
 #
 # Load Balancing and Target groups
 #
@@ -273,14 +261,14 @@ variable "instance_role_managed_policy_arn_count" {
 # SSM and Associations
 #
 
-variable "additional_ssm_bootstrap_list" {
+variable "addtional_ssm_bootstrap_list" {
   description = "A list of maps consisting of main step actions, to be appended to SSM associations. Please see usage.tf.example in this repo for examples."
   type        = "list"
   default     = []
 }
 
-variable "additional_ssm_bootstrap_step_count" {
-  description = "Count of steps added for input 'additional_ssm_bootstrap_list'. This is required since 'additional_ssm_bootstrap_list' is a list of maps"
+variable "addtional_ssm_bootstrap_step_count" {
+  description = "Count of steps added for input 'addtional_ssm_bootstrap_list'. This is required since 'addtional_ssm_bootstrap_list' is a list of maps"
   type        = "string"
   default     = "0"
 }
@@ -367,22 +355,28 @@ variable "cw_scaling_metric" {
   default     = "CPUUtilization"
 }
 
-variable "notification_topic" {
-  description = "List of SNS Topic ARNs to use for customer notifications."
-  type        = "list"
-  default     = []
-}
-
 variable "rackspace_managed" {
   description = "Boolean parameter controlling if instance will be fully managed by Rackspace support teams, created CloudWatch alarms that generate tickets, and utilize Rackspace managed SSM documents."
   type        = "string"
+  default     = true
+}
+
+variable "enable_custom_alarm_sns_topic" {
+  description = "If not Rackspace managed, you can use custom SNS topics to send the Alarm actions to. If you will be providing a custom SNS topic, please set this to true. If not, set to false."
+  type        = "string"
   default     = false
 }
 
-variable "rackspace_alarms_enabled" {
-  description = "Specifies whether alarms will create a Rackspace ticket.  Ignored if rackspace_managed is set to false."
+variable "custom_alarm_sns_topic" {
+  description = "If not Rackspace managed, you can use custom SNS topics to send the Alarm actions to."
   type        = "string"
-  default     = false
+  default     = ""
+}
+
+variable "custom_ok_sns_topic" {
+  description = "If not Rackspace managed, you can use custom SNS topics to send the OK actions to."
+  type        = "string"
+  default     = ""
 }
 
 variable "terminated_instances" {

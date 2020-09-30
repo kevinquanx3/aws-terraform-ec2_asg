@@ -7,7 +7,7 @@
  *
  *```
  *module "asg" {
- *  source = "git@github.com:rackspace-infrastructure-automation/aws-terraform-ec2_asg//?ref=v0.0.2"
+ *  source = "git@github.com:lsm-infrastructure-automation/aws-terraform-ec2_asg//?ref=v0.0.2"
  *
  *  ec2_os              = "amazon"
  *  subnets             = ["${module.vpc.private_subnets}"]
@@ -198,7 +198,7 @@ EOF
     },
     {
       key                 = "ServiceProvider"
-      value               = "Sage"
+      value               = "lsm"
       propagate_at_launch = true
     },
     {
@@ -230,9 +230,9 @@ EOF
     windows2016   = "windows_userdata.ps1"
   }
 
-  sns_topic = "arn:aws:sns:${data.aws_region.current_region.name}:${data.aws_caller_identity.current_account.account_id}:support-emergency"
+  sns_topic = "arn:aws:sns:${data.aws_region.current_region.name}:${data.aws_caller_identity.current_account.account_id}:lsm-support-emergency"
 
-  alarm_action_config = "${var.rackspace_managed ? "managed":"unmanaged"}"
+  alarm_action_config = "${var.lsm_managed ? "managed":"unmanaged"}"
 
   alarm_actions = {
     managed = "${local.sns_topic}"
@@ -240,7 +240,7 @@ EOF
     unmanaged = "${var.custom_alarm_sns_topic}"
   }
 
-  ok_action_config = "${var.rackspace_managed ? "managed":"unmanaged"}"
+  ok_action_config = "${var.lsm_managed ? "managed":"unmanaged"}"
 
   ok_actions = {
     managed = "${local.sns_topic}"
@@ -381,7 +381,7 @@ data "aws_iam_policy_document" "mod_ec2_instance_role_policies" {
 resource "aws_iam_policy" "create_instance_role_policy" {
   count       = "${var.instance_profile_override ? 0 : 1}"
   name        = "InstanceRolePolicy-${var.resource_name}"
-  description = "Rackspace Instance Role Policies for EC2"
+  description = "lsm Instance Role Policies for EC2"
   policy      = "${data.aws_iam_policy_document.mod_ec2_instance_role_policies.json}"
 }
 
@@ -546,7 +546,7 @@ resource "aws_autoscaling_notification" "scaling_notifications" {
   topic_arn = "${var.scaling_notification_topic}"
 }
 
-resource "aws_autoscaling_notification" "support_emergency" {
+resource "aws_autoscaling_notification" "rs_support_emergency" {
   count = "${local.alarm_action_config == "managed" || var.enable_custom_alarm_sns_topic ? var.asg_count : 0}"
 
   group_names = [

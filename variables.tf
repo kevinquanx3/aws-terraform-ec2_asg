@@ -234,13 +234,13 @@ variable "target_group_arns" {
 #
 
 variable "instance_profile_override" {
-  description = "Optionally provide an instance profile. Any override profile should contain the permissions required for Rackspace support tooling to continue to function if required."
+  description = "Optionally provide an instance profile. Any override profile should contain the permissions required for lsm support tooling to continue to function if required."
   type        = "string"
   default     = false
 }
 
 variable "instance_profile_override_name" {
-  description = "Provide an instance profile name. Any override profile should contain the permissions required for Rackspace support tooling to continue to function if required. To use this set `instance_profile_override` to `true`."
+  description = "Provide an instance profile name. Any override profile should contain the permissions required for lsm support tooling to continue to function if required. To use this set `instance_profile_override` to `true`."
   type        = "string"
   default     = ""
 }
@@ -355,26 +355,26 @@ variable "cw_scaling_metric" {
   default     = "CPUUtilization"
 }
 
-variable "rackspace_managed" {
-  description = "Boolean parameter controlling if instance will be fully managed by Rackspace support teams, created CloudWatch alarms that generate tickets, and utilize Rackspace managed SSM documents."
-  type        = "string"
-  default     = false
-}
-
-variable "enable_custom_alarm_sns_topic" {
-  description = "If not Rackspace managed, you can use custom SNS topics to send the Alarm actions to. If you will be providing a custom SNS topic, please set this to true. If not, set to false."
+variable "lsm_managed" {
+  description = "Boolean parameter controlling if instance will be fully managed by lsm support teams, created CloudWatch alarms that generate tickets, and utilize lsm managed SSM documents."
   type        = "string"
   default     = true
 }
 
+variable "enable_custom_alarm_sns_topic" {
+  description = "If not lsm managed, you can use custom SNS topics to send the Alarm actions to. If you will be providing a custom SNS topic, please set this to true. If not, set to false."
+  type        = "string"
+  default     = false
+}
+
 variable "custom_alarm_sns_topic" {
-  description = "If not Rackspace managed, you can use custom SNS topics to send the Alarm actions to."
+  description = "If not lsm managed, you can use custom SNS topics to send the Alarm actions to."
   type        = "string"
   default     = ""
 }
 
 variable "custom_ok_sns_topic" {
-  description = "If not Rackspace managed, you can use custom SNS topics to send the OK actions to."
+  description = "If not lsm managed, you can use custom SNS topics to send the OK actions to."
   type        = "string"
   default     = ""
 }
